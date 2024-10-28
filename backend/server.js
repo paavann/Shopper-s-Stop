@@ -58,7 +58,7 @@ app.put("/api/products/:id", async (req, res) => {
         res.status(200).json({ success: true, data: updatedProduct });
     } catch (error) {
         if (!mongoose.Types.ObjectId.isValid(id)) { //used to check whether the object id is valid
-            res.status(404).json({ success: false, message: "product not found" });
+            res.status(404).json({ success: false, message: "product not found" }); //status code: server couldn't find the resource
         }
         console.error("error in updating the product: ", error.message);
         res.status(500).json({ success: false, message: "internal server error" });
@@ -78,7 +78,7 @@ app.delete("/api/products/:id", async (req, res) => {
             res.status(404).json({ success: false, message: "product not found" });
         }
         console.error("error in deleting the product: ", error.message);
-        res.status(500).json({ success: false, message: "internal server error" }); //status code: server couldn't find the resource
+        res.status(500).json({ success: false, message: "internal server error" });
     }
 })
 
